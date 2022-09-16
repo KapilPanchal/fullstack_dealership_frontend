@@ -4,22 +4,9 @@ import { AboutComponent } from './component/about/about.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { HomeComponent } from './component/home/home.component';
 import { SigninComponent } from './component/signin/signin.component';
-import { SignupComponent } from './component/signup/signup.component';
+import { AuthGuard } from './config/app.guard';
 
 const routes: Routes = [
-  {
-    path:'',
-    redirectTo:'/',
-    pathMatch: 'full'
-  },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-  {
-    path: 'signin',
-    component: SigninComponent
-  },
   {
     path: 'home',
     component: HomeComponent
@@ -31,6 +18,16 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'',
+    redirectTo:'/home',
+    pathMatch: 'full'
   }
 ];
 

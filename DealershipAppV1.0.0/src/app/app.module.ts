@@ -1,21 +1,19 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './component/signup/signup.component';
-import { SigninComponent } from './component/signin/signin.component';
 import { HomeComponent } from './component/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './component/contact/contact.component';
 import { AboutComponent } from './component/about/about.component'
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './config/app.init';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
-    SigninComponent,
     HomeComponent,
     ContactComponent,
     AboutComponent
@@ -24,9 +22,17 @@ import { AboutComponent } from './component/about/about.component'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    KeycloakAngularModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

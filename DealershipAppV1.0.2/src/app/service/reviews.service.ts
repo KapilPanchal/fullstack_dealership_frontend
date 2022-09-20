@@ -12,7 +12,7 @@ export class ReviewsService {
   private apiUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
-  public getAllReviews(): Observable<AppModel> {
-    return this.http.get<AppModel>(`${this.apiUrl}/api/get-all`);
+  public getAllReviews(): Observable<AppModel[]> {
+    return this.http.get<AppModel[]>(`${this.apiUrl}/api/get-all`);
   }
 }

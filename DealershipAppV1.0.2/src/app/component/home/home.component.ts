@@ -1,4 +1,5 @@
-import { Component, getPlatform, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { AppModel } from 'src/app/model/app-model';
 import { ReviewsService } from 'src/app/service/reviews.service';
 
@@ -8,11 +9,11 @@ import { ReviewsService } from 'src/app/service/reviews.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-error: any;
+  public error: any;
 
   constructor(private reviewService: ReviewsService) { }
 
-  appModel: AppModel | undefined;
+  public appModelList!: AppModel[];
 
   ngOnInit(): void {
     this.getAllReviews();
@@ -20,9 +21,12 @@ error: any;
 
   private getAllReviews() {
     this.reviewService.getAllReviews().subscribe({
-      next: (res) => {console.log(res),
-                      this.appModel = res},
-      error: (err) => {console.log(err), this.error = err}
+      next: (res: AppModel[]) => 
+                      {console.log(res), this.appModelList = res,
+                      this.appModelList = JSON.parse(JSON.stringify(res)),
+                      console.log(this.appModelList)},
+      error: (err: HttpErrorResponse) => 
+                      {console.log(err), this.error = err.message}
     });
   }
 }

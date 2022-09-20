@@ -1,8 +1,23 @@
+<!-- <div>
+    <div class="row">
+        <div class="col">
+            <label>Dealer Name: </label>
+            <input type="text">
+        </div>
+        <div class="col">
+            <label>Location: </label>
+            <input type="text">
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-link" type="button">+ add</button>
+        </div>
+        <div class="row">
+            <textarea id="w3review" name="w3review" rows="4" cols="50">{{appModelList | json}} {{error | json}}</textarea>
+        </div>
+    </div>
+</div> -->
 <div>
-    <div>
-        <p>
-            {{appModel | json}}
-            {{error | json}}
-        </p>
+    <div *ngFor="let appModel of appModelList | keyvalue">
+        <div>{{appModel.key}}</div>
     </div>
 </div>

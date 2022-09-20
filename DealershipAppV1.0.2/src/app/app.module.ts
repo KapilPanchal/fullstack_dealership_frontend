@@ -10,6 +10,7 @@ import { ContactComponent } from './component/contact/contact.component';
 import { AboutComponent } from './component/about/about.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './config/app.init';
+import { ReviewsService } from './service/reviews.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { initializeKeycloak } from './config/app.init';
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService]
-    }
+    },
+    ReviewsService
   ],
   bootstrap: [AppComponent]
 })

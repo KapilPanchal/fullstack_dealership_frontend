@@ -1,5 +1,5 @@
 export interface AppModel {
-    dealerName: string,
-    locationState: string,
+    name: string,
+    state: string,
     review: string
 }

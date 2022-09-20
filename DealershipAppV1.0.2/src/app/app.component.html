@@ -18,7 +18,8 @@
         </li>
       </ul>
 
-      <button class="btn btn-outline-link rounded-0" (click)="onSigninClicked()" *ngIf="!isLoggedIn" type="submit">Sign
+      <button class="btn btn-outline-link rounded-0" 
+      (click)="onSigninClicked()" *ngIf="!isLoggedIn" type="submit">Sign
         in
       </button>
       <button class="btn btn-outline-link rounded-0" (click)="onSignOutClicked()" *ngIf="isLoggedIn" type="submit">Sign
@@ -28,5 +29,5 @@
     </div>
   </div>
 </nav>
-<p> Hi, {{user | titlecase}}</p>
+<p> Welcome, {{user | titlecase}}</p>
 <router-outlet></router-outlet>

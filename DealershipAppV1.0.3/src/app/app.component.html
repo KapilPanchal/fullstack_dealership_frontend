@@ -1,1 +1,26 @@
-<div>{{appState$ | async | json}}</div>
+<!-- <div>
+    {{appState$ | async | json}}
+<pre></pre>
+</div> -->
+
+<div *ngIf="(appState$ | async) as appState">
+    <div *ngIf="(appState.appData?.data?.dealers) as dealer">
+        {{dealer[0].locationState.locations[0].stateLocation}}
+    </div>
+
+    <!-- <div *ngFor="let dealer of appState.appData?.data?.dealers">
+        <div class="row">
+            <div class="col">
+                {{dealer.id}}
+            </div>
+            <div class="col">
+                {{dealer.name}}
+            </div>
+            <div class="row" *ngFor="let location of dealer.locationState.locations">                
+                <div class="col">
+                    {{location.id}}
+                </div>
+            </div>
+        </div>
+    </div>     -->
+</div>

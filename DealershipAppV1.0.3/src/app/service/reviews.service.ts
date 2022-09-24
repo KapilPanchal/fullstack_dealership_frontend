@@ -8,11 +8,10 @@ import { CustomResponse } from '../model/custom-response';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReviewsService {
-  
 
   private readonly apiUrl = environment.apiUrl;
-
   constructor(private http: HttpClient) { }
 
   dealers$ = <Observable<CustomResponse>> this.http.get<CustomResponse>(`${this.apiUrl}/api/get-all`)
@@ -23,6 +22,6 @@ export class ReviewsService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error);
-    return throwError(() => new Error(`An Error Occured - Error Code: ${error.status}`));
+    return throwError(() => new Error(`Internal Server Error - Code: ${error.message}`));
   }
 }

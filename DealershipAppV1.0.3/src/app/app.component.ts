@@ -10,29 +10,28 @@ import { ReviewsService } from './service/reviews.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'DealershipAppV1.0.3';
 
+export class AppComponent implements OnInit {
+ 
   appState$!: Observable<AppState<CustomResponse>>;
-
   constructor(private reviewsService: ReviewsService){}
   
   ngOnInit(): void {
     this.appState$ = this.reviewsService.dealers$
     .pipe(
-      map((response) => {
+      map((response: CustomResponse) => {
         return {
           dataState: DataState.LOADED_STATE,
-          appData: response
+          appData: response          
         }
       }),
       startWith({
         dataState: DataState.LOADING_STATE
       }),
-      catchError((error: string) => {
+      catchError((err: CustomResponse) => {
         return of({
           dataState: DataState.ERROR_STATE,
-          error: error
+          error: err.message
         });
       })
     );

@@ -1,6 +1,9 @@
 import { Review } from "./review";
 
-export interface LocationState {
+export interface LocationState{
     id: string;
-    state: {reviews?: Review[], review?: Review};
+    stateLocation: string;
+    reviews: {
+        reviews: Review[]
+    };
 }

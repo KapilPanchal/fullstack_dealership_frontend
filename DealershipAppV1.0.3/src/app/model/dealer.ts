@@ -1,9 +1,9 @@
-import { LocationState } from "./location-state";
+import { Location } from "./location";
 
 export interface Dealer {
     id: string;
     name: string;
-    locationState: {
-        locations: LocationState[]
+    location: {
+        locations: Location[]
     };    
 }

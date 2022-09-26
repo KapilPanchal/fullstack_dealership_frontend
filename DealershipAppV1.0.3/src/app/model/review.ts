@@ -3,5 +3,5 @@ export interface Review {
     timeStamp: Date;
     review: {
         reviews: string[]
-    };    
+    };
 }

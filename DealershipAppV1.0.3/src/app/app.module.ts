@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ReviewsService } from './service/reviews.service';
+import { ResponseInterceptor } from './interceptor/response.interceptor';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,14 @@ import { ReviewsService } from './service/reviews.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ReviewsService],
+  providers: [
+    ReviewsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

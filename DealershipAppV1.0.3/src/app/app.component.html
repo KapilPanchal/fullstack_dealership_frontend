@@ -5,7 +5,7 @@
 
 <div *ngIf="(appState$ | async) as appState">
     <div *ngIf="(appState.appData?.data?.dealers) as dealer">
-        {{dealer[0].locationState.locations[0].stateLocation}}
+        {{dealer[0].location.locations[0].state}}
     </div>
 
     <!-- <div *ngFor="let dealer of appState.appData?.data?.dealers">
